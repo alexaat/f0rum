@@ -2,14 +2,13 @@ FROM golang:1.19
 LABEL vesion="1.0"
 LABEL maintaner="Aliaksei Vidaseu and Andrei Martynenko"
 LABEL description="Project Forum"
-LABEL port="9000"
 WORKDIR /app
 COPY go.mod ./
 COPY go.sum ./
 RUN go mod download
-COPY . ./
-RUN go build -o /docker-forum
-CMD [ "/docker-forum" ]
+COPY . .
+EXPOSE 8080
+CMD go run .
 #Build Image
 # docker build --tag forum .
 #Run image
