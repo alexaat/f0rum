@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //      _________posts________________________________________________
 //     |  id       |  userid   |  date     |  content  |  categories  |
 //     |  INTEGER  |  INTEGER  |  INTEGER  |  TEXT     |  TEXT        |
@@ -94,26 +92,4 @@ func getPostById(postId int) (*Post, error) {
 		return nil, err
 	}
 	return &post, nil
-}
-
-func printPosts() {
-	rows, err := db.Query("SELECT * FROM posts")
-	if err != nil {
-		return
-	}
-	defer rows.Close()
-	post := Post{}
-	for rows.Next() {
-		var categories string
-		err = rows.Scan(&(post.Id), &(post.Userid), &(post.Date), &(post.Content), &categories)
-		if err != nil {
-			return
-		}
-		post.Categories = stringToSlice(categories, ",")
-		fmt.Println(post)
-	}
-	err = rows.Err()
-	if err != nil {
-		return
-	}
 }

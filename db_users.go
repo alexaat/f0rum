@@ -102,22 +102,3 @@ func checkUser(email string, password string) (*User, error) {
 	}
 	return nil, nil
 }
-
-func printUsers() {
-	rows, err := db.Query("SELECT * FROM users")
-	if err != nil {
-		return
-	}
-	defer rows.Close()
-	for rows.Next() {
-		user := User{}
-		err = rows.Scan(&(user.Id), &(user.Email), &(user.Username), &(user.Password), &(user.Sessionid))
-		if err != nil {
-			return
-		}		
-	}
-	err = rows.Err()
-	if err != nil {
-		return
-	}
-}

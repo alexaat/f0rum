@@ -42,9 +42,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		showError(w, 500, "500 Internal Server Error")
 		return
 	}
-	printUsers()
-	printPosts()
-	printComments()
 }
 func signHandler(w http.ResponseWriter, r *http.Request) {
 	templ, err := template.ParseFiles("templates/sign.html")

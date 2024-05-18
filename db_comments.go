@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //       ________comments___________________________________________
 //      |  id       |  date     |  userid   |  postid   |  content  |
 //      |  INTEGER  |  INTEGER  |  INTEGER  |  INTEGER  |  TEXT     |
@@ -59,24 +57,4 @@ func saveComment(user *User, postId int, comment string) error {
 		return err
 	}
 	return nil
-}
-
-func printComments() {
-	rows, err := db.Query("SELECT * FROM comments")
-	if err != nil {
-		return
-	}
-	defer rows.Close()
-	comment := Comment{}
-	for rows.Next() {
-		err = rows.Scan(&(comment.Id), &(comment.Date), &(comment.Userid), &(comment.Postid), &(comment.Content))
-		if err != nil {
-			return
-		}
-		fmt.Println(comment)
-	}
-	err = rows.Err()
-	if err != nil {
-		return
-	}
 }
