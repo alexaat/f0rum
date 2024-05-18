@@ -18,10 +18,14 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	indexObject := IndexObject{}
 	sessionId := getCookie(r)
 	user := getUserBySessionId(sessionId)
-	indexObject.User = user
 	if user == nil {
-		currentMode = SHAW_ALL
+		http.Redirect(w, r, "/sign", http.StatusTemporaryRedirect)
+		return
 	}
+
+	indexObject.User = user
+	currentMode = SHAW_ALL
+
 	posts, err := getPosts(indexObject.User)
 	if err != nil {
 		showError(w, 500, "500 Internal Server Error")
