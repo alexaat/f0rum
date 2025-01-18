@@ -47,6 +47,7 @@ func main() {
 	http.HandleFunc("/changemode", changemodeHandler)
 	fmt.Println("Server start at port :8080")
 	http.ListenAndServe(":8080", nil)
+
 }
 func createTables() {
 	err := crerateUsersTable()

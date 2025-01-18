@@ -32,8 +32,8 @@
                 </formaction>
                 <label for="chk" aria-hidden="true">Login</label>
                 {{if ne .SignIn ""}} <div class="warning-message">{{.SignIn}}</div> {{end}}
-                <input type="email" name="login_email" placeholder="Email" required="">
-                <input type="password" name="login_password" placeholder="Password" required="">
+                <input type="email" name="login_email" placeholder="Email" required="" value="guest@gmail.com">
+                <input type="password" name="login_password" placeholder="Password" required="" value="guest123">
                 <button>Log in</button>
             </form>
         </div>
